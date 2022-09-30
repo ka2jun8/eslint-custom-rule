@@ -1,19 +1,30 @@
-import { RuleTester } from "eslint";
+import { TSESLint } from "@typescript-eslint/utils";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const rule = require("./custom-rule");
+const rule = require("./custom-rule").rule;
 
-// TODO テスト作る
-const ruleTester = new RuleTester();
+const ruleTester = new TSESLint.RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
+});
 ruleTester.run("custom-rule", rule, {
-  valid: ["process.env"],
+  valid: [
+    `
+    const func = () => {
+      const a = usePreloadedQuery();
+      useDispose();
+    };
+  `,
+  ],
   invalid: [
     {
-      code: "process.env.NODE_ENV",
+      code: `
+        const func = () => {
+          const a = usePreloadedQuery();
+        };
+      `,
       errors: [
         {
-          messageId: "sample",
-          type: "MemberExpression",
+          messageId: "noUseDispose",
         },
       ],
     },

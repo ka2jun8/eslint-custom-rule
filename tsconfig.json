@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "outDir": "./sample/rules",
+    "outDir": "./sample/eslint-local-rules",
     "rootDir": "./src",
     "lib": [],
     "noEmit": false,

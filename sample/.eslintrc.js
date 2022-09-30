@@ -1,6 +1,3 @@
-const rulesDirPlugin = require("eslint-plugin-rulesdir");
-rulesDirPlugin.RULES_DIR = "./rules";
-
 module.exports = {
   env: {
     browser: true,
@@ -17,9 +14,9 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "rulesdir"],
+  plugins: ["react", "@typescript-eslint", "eslint-plugin-local-rules"],
   rules: {
-    "rulesdir/custom-rule": "error",
+    "local-rules/custom-rule": "error",
   },
   settings: {
     react: {

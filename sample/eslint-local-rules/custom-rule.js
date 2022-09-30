@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.rule = void 0;
 var isBlockStatement = function (expression) {
     return expression.type === "BlockStatement";
 };
@@ -15,7 +16,7 @@ var isCallExpression = function (expression) {
 var isIdentifier = function (expression) {
     return expression.type === "Identifier";
 };
-var rule = {
+exports.rule = {
     meta: {
         type: "problem",
         hasSuggestions: true,
@@ -89,4 +90,3 @@ var rule = {
         };
     }
 };
-module.exports = rule;

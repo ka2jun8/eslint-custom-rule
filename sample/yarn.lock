@@ -636,6 +636,11 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
+eslint-plugin-local-rules@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-local-rules/-/eslint-plugin-local-rules-1.3.2.tgz#b9c9522915faeb9e430309fb909fc1dbcd7aedb3"
+  integrity sha512-X4ziX+cjlCYnZa+GB1ly3mmj44v2PeIld3tQVAxelY6AMrhHSjz6zsgsT6nt0+X5b7eZnvL/O7Q3pSSK2kF/+Q==
+
 eslint-plugin-react@^7.31.8:
   version "7.31.8"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.31.8.tgz#3a4f80c10be1bcbc8197be9e8b641b2a3ef219bf"
@@ -655,11 +660,6 @@ eslint-plugin-react@^7.31.8:
     resolve "^2.0.0-next.3"
     semver "^6.3.0"
     string.prototype.matchall "^4.0.7"
-
-eslint-plugin-rulesdir@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-rulesdir/-/eslint-plugin-rulesdir-0.2.1.tgz#e246bb9657e68eb0a30680c60775f40aa829ec0b"
-  integrity sha512-t7rQvEyfE4JZJu6dPl4/uVr6Fr0fxopBhzVbtq3isfOHMKdlIe9xW/5CtIaWZI0E1U+wzAk0lEnZC8laCD5YLA==
 
 eslint-scope@^5.1.1:
   version "5.1.1"

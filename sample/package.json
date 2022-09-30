@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "lint": "eslint --rulesdir=rules src"
+    "lint": "eslint src"
   },
   "devDependencies": {
     "@types/jest": "^29.0.3",
@@ -18,8 +18,8 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "eslint": "^8.24.0",
+    "eslint-plugin-local-rules": "^1.3.2",
     "eslint-plugin-react": "^7.31.8",
-    "eslint-plugin-rulesdir": "^0.2.1",
     "typescript": "^4.8.3"
   },
   "dependencies": {
