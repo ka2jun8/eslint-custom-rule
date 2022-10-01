@@ -11,6 +11,8 @@ import {
   ExpressionStatement,
 } from "estree";
 
+const isTest = process.env.NODE_ENV === "test";
+
 const isBlockStatement = (
   expression: Expression | BlockStatement
 ): expression is BlockStatement => {
@@ -41,6 +43,11 @@ const isIdentifier = (
   return expression.type === "Identifier";
 };
 
+const isNextPageFile = (filename: string) => {
+  // next.config.js の pageExtensions から取得する方が良さそう
+  return filename.endsWith(".page.tsx");
+};
+
 export const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
@@ -50,10 +57,17 @@ export const rule: Rule.RuleModule = {
       suggestion: true,
     },
     messages: {
-      noUseDispose: "`useDispose()`がありません",
+      noUseDispose:
+        "Must write `useDispose` if `usePreloadedQuery` exists in the Next pages file.",
     },
   },
   create(context) {
+    const filename = context.getPhysicalFilename();
+
+    if (!isTest && !isNextPageFile(filename)) {
+      return {};
+    }
+
     return {
       ArrowFunctionExpression(node) {
         const body = node.body;
@@ -116,7 +130,7 @@ export const rule: Rule.RuleModule = {
                 fix(fixer) {
                   return fixer.insertTextBeforeRange(
                     [body.range![0] + 2, body.range![1]],
-                    "useDispose();\n"
+                    "useDispose(initialPreloadedQuery);\n"
                   );
                 },
               },

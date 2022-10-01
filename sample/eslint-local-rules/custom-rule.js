@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.rule = void 0;
+var isTest = process.env.NODE_ENV === "test";
 var isBlockStatement = function (expression) {
     return expression.type === "BlockStatement";
 };
@@ -16,6 +17,10 @@ var isCallExpression = function (expression) {
 var isIdentifier = function (expression) {
     return expression.type === "Identifier";
 };
+var isNextPageFile = function (filename) {
+    // next.config.js の pageExtensions から取得する方が良さそう
+    return filename.endsWith(".page.tsx");
+};
 exports.rule = {
     meta: {
         type: "problem",
@@ -25,10 +30,14 @@ exports.rule = {
             suggestion: true
         },
         messages: {
-            noUseDispose: "`useDispose()`がありません"
+            noUseDispose: "Must write `useDispose` if `usePreloadedQuery` exists in the Next pages file."
         }
     },
     create: function (context) {
+        var filename = context.getPhysicalFilename();
+        if (!isTest && !isNextPageFile(filename)) {
+            return {};
+        }
         return {
             ArrowFunctionExpression: function (node) {
                 var body = node.body;
@@ -79,7 +88,7 @@ exports.rule = {
                             {
                                 messageId: "noUseDispose",
                                 fix: function (fixer) {
-                                    return fixer.insertTextBeforeRange([body.range[0] + 2, body.range[1]], "useDispose();\n");
+                                    return fixer.insertTextBeforeRange([body.range[0] + 2, body.range[1]], "useDispose(initialPreloadedQuery);\n");
                                 }
                             },
                         ]
